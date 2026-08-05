@@ -110,22 +110,62 @@ const Overview: React.FC = () => {
         setRecentEvents(data.events || []);
       }
     } catch {
-      setError(`Backend unreachable (${getApiUrl()}) — Configure API URL in Settings`);
-      setStats({ total_events: 0, threats_blocked: 0, active_watchers: 0 });
-      setRecentEvents([]);
+      // Fallback to Demo Mode when backend is unreachable
+      setError(`Backend unreachable (${getApiUrl()}) — Running in Demo Mode`);
       
-      // Auto-configure prompt for first-time failure
-      if (!localStorage.getItem('sentinelx_api_url') && !localStorage.getItem('sentinelx_prompted')) {
-        localStorage.setItem('sentinelx_prompted', 'true');
-        // Small delay to ensure render happens before blocking prompt
-        setTimeout(() => {
-          const userUrl = window.prompt("SentinelX Backend is unreachable. Please enter your Backend API URL:", DEFAULT_API);
-          if (userUrl) {
-            localStorage.setItem('sentinelx_api_url', userUrl.trim());
-            window.location.reload();
-          }
-        }, 500);
+      const storedStats = localStorage.getItem('sentinelx_demo_stats');
+      const storedEvents = localStorage.getItem('sentinelx_demo_events');
+      
+      let newStats;
+      if (storedStats) {
+        newStats = JSON.parse(storedStats);
+        // Increment randomly on each tick
+        if (Math.random() > 0.3) {
+          newStats.total_events += Math.floor(Math.random() * 5) + 1;
+        }
+      } else {
+        newStats = {
+          total_events: Math.floor(Math.random() * 500) + 4000,
+          threats_blocked: Math.floor(Math.random() * 100) + 2400,
+          active_watchers: 4
+        };
       }
+      
+      let newEvents;
+      const now = new Date();
+      if (storedEvents) {
+        newEvents = JSON.parse(storedEvents);
+        // Sometimes add a new event
+        if (Math.random() > 0.5) {
+          const eventTypes = ['PROCESS_EXITED', 'HIGH_DISK_USAGE', 'NETWORK_SCAN_DETECTED', 'UNAUTHORIZED_ACCESS', 'PROCESS_STARTED'];
+          const sources = ['SYSTEMWATCHER', 'FILEWATCHER', 'NETWATCHER'];
+          const severities = ['info', 'notice', 'warning'];
+          
+          const newEvent = {
+            id: Date.now(),
+            timestamp: now.toISOString(),
+            event_type: eventTypes[Math.floor(Math.random() * eventTypes.length)],
+            source: sources[Math.floor(Math.random() * sources.length)],
+            details: {},
+            severity: severities[Math.floor(Math.random() * severities.length)]
+          };
+          newEvents = [newEvent, ...newEvents].slice(0, 6);
+        }
+      } else {
+        newEvents = [
+          { id: 1, timestamp: now.toISOString(), event_type: 'PROCESS_EXITED', source: 'SYSTEMWATCHER', details: {}, severity: 'info' },
+          { id: 2, timestamp: new Date(now.getTime() - 2000).toISOString(), event_type: 'HIGH_DISK_USAGE', source: 'SYSTEMWATCHER', details: {}, severity: 'warning' },
+          { id: 3, timestamp: new Date(now.getTime() - 5000).toISOString(), event_type: 'NETWORK_SCAN_DETECTED', source: 'NETWATCHER', details: {}, severity: 'notice' },
+          { id: 4, timestamp: new Date(now.getTime() - 10000).toISOString(), event_type: 'UNAUTHORIZED_ACCESS', source: 'FILEWATCHER', details: {}, severity: 'warning' },
+          { id: 5, timestamp: new Date(now.getTime() - 15000).toISOString(), event_type: 'PROCESS_STARTED', source: 'SYSTEMWATCHER', details: {}, severity: 'info' },
+        ];
+      }
+      
+      localStorage.setItem('sentinelx_demo_stats', JSON.stringify(newStats));
+      localStorage.setItem('sentinelx_demo_events', JSON.stringify(newEvents));
+      
+      setStats(newStats);
+      setRecentEvents(newEvents);
     } finally {
       setLoading(false);
     }
