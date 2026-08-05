@@ -65,7 +65,7 @@ const Settings: React.FC = () => {
           <div className="space-y-6">
             <div>
               <label className="block font-bold text-sm text-black mb-2">Backend API URL</label>
-              <p className="text-xs text-black/60 font-medium mb-3">Configure the endpoint for the SentinelX Python Backend. If unreachable, the dashboard will fall back to Demo Mode.</p>
+              <p className="text-xs text-black/60 font-medium mb-3">Configure the endpoint for the SentinelX Python Backend.</p>
               <input 
                 type="text" 
                 value={apiUrl}
