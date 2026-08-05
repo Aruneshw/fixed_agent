@@ -109,7 +109,24 @@ const Overview: React.FC = () => {
         setRecentEvents(data.events || []);
       }
     } catch {
-      setError('Backend unreachable — ensure the API is running on port 8000');
+      // Fallback to Demo Mode when backend is unreachable
+      setError('Backend unreachable — Running in Demo Mode with mock data');
+      
+      // Inject Mock Data
+      setStats({
+        total_events: Math.floor(Math.random() * 500) + 4000,
+        threats_blocked: Math.floor(Math.random() * 100) + 2400,
+        active_watchers: 4
+      });
+      
+      const now = new Date();
+      setRecentEvents([
+        { id: 1, timestamp: now.toISOString(), event_type: 'PROCESS_EXITED', source: 'SYSTEMWATCHER', details: {}, severity: 'info' },
+        { id: 2, timestamp: new Date(now.getTime() - 2000).toISOString(), event_type: 'HIGH_DISK_USAGE', source: 'SYSTEMWATCHER', details: {}, severity: 'warning' },
+        { id: 3, timestamp: new Date(now.getTime() - 5000).toISOString(), event_type: 'NETWORK_SCAN_DETECTED', source: 'NETWATCHER', details: {}, severity: 'notice' },
+        { id: 4, timestamp: new Date(now.getTime() - 10000).toISOString(), event_type: 'UNAUTHORIZED_ACCESS', source: 'FILEWATCHER', details: {}, severity: 'warning' },
+        { id: 5, timestamp: new Date(now.getTime() - 15000).toISOString(), event_type: 'PROCESS_STARTED', source: 'SYSTEMWATCHER', details: {}, severity: 'info' },
+      ]);
     } finally {
       setLoading(false);
     }
