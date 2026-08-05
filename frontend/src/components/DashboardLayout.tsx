@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { Activity, Shield, Cpu, Database, Settings } from 'lucide-react';
 import TypewriterText from './TypewriterText';
@@ -15,8 +15,6 @@ const DashboardLayout: React.FC = () => {
   useGSAP(() => {
     // Initialize Lenis for smooth scrolling
     const lenis = new Lenis({
-      wrapper: mainRef.current || window,
-      content: mainRef.current?.firstElementChild as HTMLElement || document.body,
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
@@ -122,7 +120,7 @@ const DashboardLayout: React.FC = () => {
                 key={item.to}
                 to={item.to}
                 end={item.end}
-                ref={(el) => (navRefs.current[index] = el)}
+                ref={(el) => { navRefs.current[index] = el; }}
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={() => handleMouseLeave(index)}
                 className={navLinkClass}
