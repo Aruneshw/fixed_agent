@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SentinelX — Deterministic Cybersecurity Agent</title>
+  <meta name="description" content="Enterprise-grade, rule-based cybersecurity automation platform. Zero-hallucination system monitoring and deterministic threat response.">
+  <meta name="keywords" content="cybersecurity, automation, sentinel, monitoring, threat response, FastAPI, React">
+  <meta name="author" content="Aruneshw">
+  <meta property="og:title" content="SentinelX — Deterministic Cybersecurity Agent">
+  <meta property="og:description" content="Enterprise-grade, rule-based cybersecurity automation platform with zero-hallucination system monitoring.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aruneshw.github.io/fixed_agent/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Background -->
+  <div class="ambient-bg">
+    <div class="grid-overlay"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+    <div class="glow glow-3"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M14 2L2 8v12l12 6 12-6V8L14 2z" stroke="url(#logo-grad)" stroke-width="1.5" fill="none"/>
+            <path d="M14 8l-6 3v6l6 3 6-3v-6l-6-3z" fill="url(#logo-grad)" opacity="0.3"/>
+            <circle cx="14" cy="14" r="3" fill="url(#logo-grad)"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="2" y1="2" x2="26" y2="26">
+                <stop offset="0%" stop-color="#00f0ff"/>
+                <stop offset="100%" stop-color="#7c5cfc"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">SentinelX</span>
+      </a>
+      <div class="nav-links">
+        <a href="#architecture">Architecture</a>
+        <a href="#features">Features</a>
+        <a href="#deployment">Deploy</a>
+        <a href="#docs">Docs</a>
+        <a href="https://github.com/Aruneshw/fixed_agent" class="nav-btn" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="hero">
+    <div class="hero-content">
+      <div class="hero-badge" data-animate="fade-up">
+        <span class="badge-dot"></span>
+        Enterprise Cybersecurity Platform
+      </div>
+      <h1 data-animate="fade-up" data-delay="100">
+        <span class="gradient-text">Deterministic</span><br>
+        Threat Response
+      </h1>
+      <p class="hero-subtitle" data-animate="fade-up" data-delay="200">
+        Zero-hallucination system monitoring powered by rule-based deterministic pattern matching. No AI guesswork — only precise, repeatable security automation.
+      </p>
+      <div class="hero-actions" data-animate="fade-up" data-delay="300">
+        <a href="#deployment" class="btn btn-primary">
+          <span>Get Started</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://github.com/Aruneshw/fixed_agent" class="btn btn-ghost" target="_blank" rel="noopener">
+          <span>View Source</span>
+        </a>
+      </div>
+      <div class="hero-stats" data-animate="fade-up" data-delay="400">
+        <div class="stat">
+          <span class="stat-value">0%</span>
+          <span class="stat-label">Hallucination Rate</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">&lt;50ms</span>
+          <span class="stat-label">Rule Evaluation</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">24/7</span>
+          <span class="stat-label">System Monitoring</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terminal Preview -->
+    <div class="terminal-preview" data-animate="fade-up" data-delay="500">
+      <div class="terminal-header">
+        <div class="terminal-dots">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </div>
+        <span class="terminal-title">sentinelx — monitoring</span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-line">
+          <span class="t-prompt">$</span>
+          <span class="t-cmd">docker-compose up --build -d</span>
+        </div>
+        <div class="terminal-line t-output">
+          <span class="t-success">✓</span> Backend API started on :8000
+        </div>
+        <div class="terminal-line t-output">
+          <span class="t-success">✓</span> Frontend dashboard on :80
+        </div>
+        <div class="terminal-line t-output">
+          <span class="t-success">✓</span> File watcher initialized
+        </div>
+        <div class="terminal-line t-output">
+          <span class="t-success">✓</span> Network watcher initialized
+        </div>
+        <div class="terminal-line t-output">
+          <span class="t-success">✓</span> Process watcher initialized
+        </div>
+        <div class="terminal-line">
+          <span class="t-prompt">$</span>
+          <span class="t-cmd">sentinelx status</span>
+        </div>
+        <div class="terminal-line t-output">
+          <span class="t-info">⬡</span> Rules loaded: <span class="t-highlight">47</span> | Active watchers: <span class="t-highlight">3</span> | Threats blocked: <span class="t-highlight">0</span>
+        </div>
+        <div class="terminal-line">
+          <span class="t-prompt">$</span>
+          <span class="t-cursor">_</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Architecture Section -->
+  <section id="architecture">
+    <div class="section-inner">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-tag">System Design</span>
+        <h2>Architecture</h2>
+        <p>Four pillars of deterministic security automation</p>
+      </div>
+      <div class="arch-grid">
+        <div class="arch-card" data-animate="fade-up" data-delay="0">
+          <div class="arch-icon arch-icon-frontend">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>Frontend</h3>
+          <p>React + Vite with GSAP animations, Lenis smooth scrolling, and Tailwind CSS glassmorphism effects.</p>
+          <div class="arch-tags">
+            <span>React 19</span>
+            <span>Vite 8</span>
+            <span>GSAP</span>
+            <span>Tailwind 4</span>
+          </div>
+        </div>
+        <div class="arch-card" data-animate="fade-up" data-delay="100">
+          <div class="arch-icon arch-icon-backend">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3>Backend API</h3>
+          <p>High-performance Python FastAPI with async event processing, SQLAlchemy ORM, and structured logging.</p>
+          <div class="arch-tags">
+            <span>FastAPI</span>
+            <span>SQLAlchemy</span>
+            <span>Python</span>
+          </div>
+        </div>
+        <div class="arch-card" data-animate="fade-up" data-delay="200">
+          <div class="arch-icon arch-icon-rules">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Rule Engine</h3>
+          <p>JSON-based deterministic pattern matching. No ML uncertainty — every rule has a predictable, testable outcome.</p>
+          <div class="arch-tags">
+            <span>JSON Rules</span>
+            <span>Deterministic</span>
+            <span>Testable</span>
+          </div>
+        </div>
+        <div class="arch-card" data-animate="fade-up" data-delay="300">
+          <div class="arch-icon arch-icon-watchers">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>System Watchers</h3>
+          <p>Cross-platform daemons with real-time monitoring of file systems, network traffic, and active processes.</p>
+          <div class="arch-tags">
+            <span>File Watch</span>
+            <span>Network</span>
+            <span>Process</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features">
+    <div class="section-inner">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-tag">Capabilities</span>
+        <h2>Built for Zero Trust</h2>
+        <p>Enterprise-grade features for deterministic security</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card" data-animate="fade-up" data-delay="0">
+          <div class="feature-number">01</div>
+          <h3>Zero Hallucination</h3>
+          <p>No AI/ML means no false positives from model uncertainty. Every detection is rule-backed and reproducible.</p>
+        </div>
+        <div class="feature-card" data-animate="fade-up" data-delay="80">
+          <div class="feature-number">02</div>
+          <h3>Real-Time Monitoring</h3>
+          <p>Asynchronous event processing with sub-50ms rule evaluation across all system watchers.</p>
+        </div>
+        <div class="feature-card" data-animate="fade-up" data-delay="160">
+          <div class="feature-number">03</div>
+          <h3>Cross-Platform</h3>
+          <p>Native daemons for both Windows and Linux with unified event schemas and shared rule sets.</p>
+        </div>
+        <div class="feature-card" data-animate="fade-up" data-delay="240">
+          <div class="feature-number">04</div>
+          <h3>Container-Ready</h3>
+          <p>Full Docker Compose and Kubernetes manifests for instant deployment at any scale.</p>
+        </div>
+        <div class="feature-card" data-animate="fade-up" data-delay="320">
+          <div class="feature-number">05</div>
+          <h3>Live Dashboard</h3>
+          <p>Hardware-accelerated React dashboard with GSAP animations and real-time event streaming.</p>
+        </div>
+        <div class="feature-card" data-animate="fade-up" data-delay="400">
+          <div class="feature-number">06</div>
+          <h3>CI/CD Pipeline</h3>
+          <p>GitHub Actions workflow for automated testing, building, and deployment of Docker images.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deployment Section -->
+  <section id="deployment">
+    <div class="section-inner">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-tag">Getting Started</span>
+        <h2>Deploy in Seconds</h2>
+        <p>Choose your preferred deployment method</p>
+      </div>
+      <div class="deploy-grid">
+        <div class="deploy-card" data-animate="fade-up" data-delay="0">
+          <div class="deploy-card-header">
+            <div class="deploy-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+            </div>
+            <h3>Docker Compose</h3>
+            <span class="deploy-badge">Recommended</span>
+          </div>
+          <p>Single command deployment for local development or production use.</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span>terminal</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              </button>
+            </div>
+            <pre><code>docker-compose up --build -d</code></pre>
+          </div>
+          <div class="deploy-endpoints">
+            <div class="endpoint">
+              <span class="endpoint-label">Dashboard</span>
+              <code>http://localhost</code>
+            </div>
+            <div class="endpoint">
+              <span class="endpoint-label">API</span>
+              <code>http://localhost:8000</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="deploy-card" data-animate="fade-up" data-delay="150">
+          <div class="deploy-card-header">
+            <div class="deploy-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/><path d="M2 12h20"/></svg>
+            </div>
+            <h3>Kubernetes</h3>
+            <span class="deploy-badge deploy-badge-alt">Scalable</span>
+          </div>
+          <p>Deploy to any K8s cluster with persistent volumes and service discovery.</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span>terminal</span>
+              <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              </button>
+            </div>
+            <pre><code>kubectl apply -f k8s/pvc.yaml
+kubectl apply -f k8s/backend-deployment.yaml
+kubectl apply -f k8s/frontend-deployment.yaml</code></pre>
+          </div>
+          <div class="deploy-endpoints">
+            <div class="endpoint">
+              <span class="endpoint-label">Manifests</span>
+              <code>k8s/</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="deploy-card" data-animate="fade-up" data-delay="300">
+          <div class="deploy-card-header">
+            <div class="deploy-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            </div>
+            <h3>CI/CD Pipeline</h3>
+            <span class="deploy-badge deploy-badge-auto">Automated</span>
+          </div>
+          <p>Push to <code>main</code> and GitHub Actions handles the rest — builds, tests, and deploys automatically.</p>
+          <div class="code-block">
+            <div class="code-header">
+              <span>.github/workflows/main.yml</span>
+            </div>
+            <pre><code>on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker-compose build</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Documentation Section -->
+  <section id="docs">
+    <div class="section-inner">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-tag">Resources</span>
+        <h2>Documentation</h2>
+        <p>Everything you need to understand, deploy, and extend SentinelX</p>
+      </div>
+      <div class="docs-grid">
+        <a href="https://github.com/Aruneshw/fixed_agent/blob/main/PRD.md" class="doc-card" data-animate="fade-up" data-delay="0" target="_blank" rel="noopener">
+          <div class="doc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          </div>
+          <div class="doc-info">
+            <h3>PRD.md</h3>
+            <p>Full product requirements, feature scope, and technical specifications.</p>
+          </div>
+          <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href="https://github.com/Aruneshw/fixed_agent/blob/main/tasks.md" class="doc-card" data-animate="fade-up" data-delay="100" target="_blank" rel="noopener">
+          <div class="doc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <div class="doc-info">
+            <h3>TASKS.md</h3>
+            <p>Execution roadmap, sprint progress, and project delivery status.</p>
+          </div>
+          <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+        <a href="https://github.com/Aruneshw/fixed_agent/blob/main/AGENTIC.md" class="doc-card" data-animate="fade-up" data-delay="200" target="_blank" rel="noopener">
+          <div class="doc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="doc-info">
+            <h3>AGENTIC.md</h3>
+            <p>Architecture rules, code conventions, and development guidelines.</p>
+          </div>
+          <svg class="doc-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <div class="logo-icon">
+              <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+                <path d="M14 2L2 8v12l12 6 12-6V8L14 2z" stroke="url(#logo-grad-f)" stroke-width="1.5" fill="none"/>
+                <circle cx="14" cy="14" r="3" fill="url(#logo-grad-f)"/>
+                <defs>
+                  <linearGradient id="logo-grad-f" x1="2" y1="2" x2="26" y2="26">
+                    <stop offset="0%" stop-color="#00f0ff"/>
+                    <stop offset="100%" stop-color="#7c5cfc"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="logo-text">SentinelX</span>
+          </div>
+          <p>Deterministic cybersecurity automation.<br>No hallucinations. No guesswork.</p>
+        </div>
+        <div class="footer-links-group">
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="#architecture">Architecture</a>
+            <a href="#features">Features</a>
+            <a href="#deployment">Deployment</a>
+          </div>
+          <div class="footer-col">
+            <h4>Resources</h4>
+            <a href="https://github.com/Aruneshw/fixed_agent" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://github.com/Aruneshw/fixed_agent/blob/main/PRD.md" target="_blank" rel="noopener">PRD</a>
+            <a href="https://github.com/Aruneshw/fixed_agent/blob/main/AGENTIC.md" target="_blank" rel="noopener">Agentic</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 SentinelX — Built by <a href="https://github.com/Aruneshw" target="_blank" rel="noopener">Aruneshw</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
