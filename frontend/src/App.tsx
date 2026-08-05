@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import DashboardLayout from './components/DashboardLayout';
 import Overview from './pages/Overview';
 import Events from './pages/Events';
@@ -7,7 +7,7 @@ import Rules from './pages/Rules';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<DashboardLayout />}>
           <Route index element={<Overview />} />
@@ -15,7 +15,7 @@ const App: React.FC = () => {
           <Route path="rules" element={<Rules />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
