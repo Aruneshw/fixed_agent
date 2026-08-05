@@ -4,7 +4,8 @@ import { SkeletonOverview } from '../components/Skeleton';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const DEFAULT_API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const getApiUrl = () => localStorage.getItem('sentinelx_api_url') || DEFAULT_API;
 
 interface StatsData {
   total_events: number;
@@ -97,8 +98,8 @@ const Overview: React.FC = () => {
     try {
       setError(null);
       const [statsRes, eventsRes] = await Promise.all([
-        fetch(`${API_URL}/api/v1/stats`),
-        fetch(`${API_URL}/api/v1/events?limit=6`),
+        fetch(`${getApiUrl()}/api/v1/stats`),
+        fetch(`${getApiUrl()}/api/v1/events?limit=6`),
       ]);
 
       if (statsRes.ok) {
@@ -110,7 +111,7 @@ const Overview: React.FC = () => {
       }
     } catch {
       // Fallback to Demo Mode when backend is unreachable
-      setError('Backend unreachable — Running in Demo Mode with mock data');
+      setError(`Backend unreachable (${getApiUrl()}) — Configure in Settings or view Demo Mode`);
       
       const storedStats = localStorage.getItem('sentinelx_demo_stats');
       const storedEvents = localStorage.getItem('sentinelx_demo_events');

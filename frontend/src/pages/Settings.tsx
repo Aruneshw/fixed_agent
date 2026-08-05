@@ -1,10 +1,17 @@
-import React, { useRef } from 'react';
-import { Settings as SettingsIcon, Save, Bell, Shield, Database, Layout } from 'lucide-react';
+import React, { useRef, useState, useEffect } from 'react';
+import { Settings as SettingsIcon, Save, Bell, Shield, Database, Layout, Network } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 const Settings: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [apiUrl, setApiUrl] = useState('');
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    const savedUrl = localStorage.getItem('sentinelx_api_url') || import.meta.env.VITE_API_URL || 'http://localhost:8000';
+    setApiUrl(savedUrl);
+  }, []);
 
   useGSAP(() => {
     if (containerRef.current) {
@@ -15,6 +22,15 @@ const Settings: React.FC = () => {
       );
     }
   }, []);
+
+  const handleSave = () => {
+    localStorage.setItem('sentinelx_api_url', apiUrl);
+    setSaved(true);
+    setTimeout(() => {
+      setSaved(false);
+      window.location.reload(); // Reload to apply new API URL globally
+    }, 1000);
+  };
 
   return (
     <div className="space-y-10" ref={containerRef}>
@@ -27,14 +43,40 @@ const Settings: React.FC = () => {
             Settings
           </h1>
         </div>
-        <button className="px-6 py-3 bg-[rgba(0,0,0,0.85)] text-white rounded-full text-xs font-extrabold flex items-center gap-2 tracking-widest uppercase shadow-md hover:bg-black transition-colors">
+        <button 
+          onClick={handleSave}
+          className={`px-6 py-3 text-white rounded-full text-xs font-extrabold flex items-center gap-2 tracking-widest uppercase shadow-md transition-all duration-300 ${saved ? 'bg-[#34c759]' : 'bg-[rgba(0,0,0,0.85)] hover:bg-black'}`}
+        >
           <Save size={16} strokeWidth={2.5} />
-          Save Changes
+          {saved ? 'Saved!' : 'Save Changes'}
         </button>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
+        {/* Network & API */}
+        <div className="settings-card glass-panel rounded-[20px] p-8 cursor-default lg:col-span-2">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center bg-[rgba(0,0,0,0.05)] text-black">
+              <Network size={20} strokeWidth={2.5} />
+            </div>
+            <h3 className="text-xl font-extrabold tracking-tighter text-black uppercase">Network & API</h3>
+          </div>
+          <div className="space-y-6">
+            <div>
+              <label className="block font-bold text-sm text-black mb-2">Backend API URL</label>
+              <p className="text-xs text-black/60 font-medium mb-3">Configure the endpoint for the SentinelX Python Backend. If unreachable, the dashboard will fall back to Demo Mode.</p>
+              <input 
+                type="text" 
+                value={apiUrl}
+                onChange={(e) => setApiUrl(e.target.value)}
+                className="w-full lg:w-1/2 px-5 py-3 rounded-xl bg-[rgba(255,255,255,0.6)] border-2 border-[rgba(0,0,0,0.1)] focus:border-black focus:outline-none transition-colors text-sm font-bold text-black"
+                placeholder="http://localhost:8000"
+              />
+            </div>
+          </div>
+        </div>
+
         {/* Core System */}
         <div className="settings-card glass-panel rounded-[20px] p-8 cursor-default">
           <div className="flex items-center gap-4 mb-6">
