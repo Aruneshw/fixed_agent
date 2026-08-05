@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* ===== Bold Minimalist Morphism (Trends Inspired) ===== */
+
+@theme {
+  --color-bg-main: #e5e5e5; /* Pale gray from frame */
+  --color-bg-card: #ffffff;
+  
+  --color-text-primary: #000000; /* Pure black, high contrast */
+  --color-text-secondary: #8c8c8c; /* Muted gray */
+  
+  /* Accent Colors - updated with rgba for glassmorphism bleeding */
+  --color-accent-red: rgba(255, 59, 48, 0.85);
+  --color-accent-yellow: rgba(255, 204, 0, 0.85);
+  --color-accent-jet: rgba(31, 46, 55, 0.85);
+  --color-accent-slate: rgba(92, 114, 123, 0.85);
+  --color-accent-clay: rgba(242, 185, 104, 0.85);
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  src: local('Inter');
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+}
+
+/* ===== TYPOGRAPHY OVERRIDES ===== */
+h1, .massive-heading {
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+/* ===== TRENDS CARDS ===== */
+.bold-card {
+  background: var(--color-bg-card);
+  border-radius: 2rem; /* Massive rounding */
+  box-shadow: none; /* Flat design */
+}
+
+/* ===== GEOMETRIC ICONS ===== */
+.geo-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+.geo-red { background-color: var(--color-accent-red); color: white; }
+.geo-yellow { background-color: var(--color-accent-yellow); color: black; }
+.geo-jet { background-color: var(--color-accent-jet); color: white; }
+.geo-clay { background-color: var(--color-accent-clay); color: black; }
+.geo-white { background-color: rgba(255, 255, 255, 0.85); color: black; }
+
+/* ===== GLASSMORPHISM ===== */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+}
+
+.glass-button {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  will-change: transform, background-color;
+  transform: translateZ(0); /* Hardware acceleration */
+}
+
+/* ===== GPU ACCELERATION ===== */
+.gpu-accelerate {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d4d4d4; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #a3a3a3; }
+
+/* ===== TYPEWRITER CURSOR ===== */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

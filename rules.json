@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "event": "USB_INSERTED",
+    "conditions": {
+      "enabled": true
+    },
+    "actions": [
+      "log",
+      "notify",
+      "email"
+    ]
+  },
+  {
+    "id": 2,
+    "event": "FILE_MODIFIED",
+    "conditions": {
+      "enabled": true,
+      "extension": ".txt"
+    },
+    "actions": [
+      "log"
+    ]
+  },
+  {
+    "id": 3,
+    "event": "HIGH_CPU_USAGE",
+    "conditions": {
+      "enabled": true
+    },
+    "actions": [
+      "notify",
+      "log"
+    ]
+  }
+]

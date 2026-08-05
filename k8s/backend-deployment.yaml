@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentinelx-backend
+  labels:
+    app: sentinelx-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sentinelx-backend
+  template:
+    metadata:
+      labels:
+        app: sentinelx-backend
+    spec:
+      containers:
+      - name: backend
+        image: aruneshw/sentinelx-backend:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          value: "sqlite:////app/data/sentinelx.db"
+        volumeMounts:
+        - name: data-volume
+          mountPath: /app/data
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: sentinelx-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: sentinelx-backend
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
