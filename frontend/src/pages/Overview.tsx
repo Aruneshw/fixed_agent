@@ -113,6 +113,19 @@ const Overview: React.FC = () => {
       setError(`Backend unreachable (${getApiUrl()}) — Configure API URL in Settings`);
       setStats({ total_events: 0, threats_blocked: 0, active_watchers: 0 });
       setRecentEvents([]);
+      
+      // Auto-configure prompt for first-time failure
+      if (!localStorage.getItem('sentinelx_api_url') && !localStorage.getItem('sentinelx_prompted')) {
+        localStorage.setItem('sentinelx_prompted', 'true');
+        // Small delay to ensure render happens before blocking prompt
+        setTimeout(() => {
+          const userUrl = window.prompt("SentinelX Backend is unreachable. Please enter your Backend API URL:", DEFAULT_API);
+          if (userUrl) {
+            localStorage.setItem('sentinelx_api_url', userUrl.trim());
+            window.location.reload();
+          }
+        }, 500);
+      }
     } finally {
       setLoading(false);
     }
